@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diana's CV Graph</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.23.0/cytoscape.min.js"></script>
+</head>
+<body>
+<div id="loading">Loading...</div>
+<div id="cy"></div>
+<script src="script.js"></script>
+</body>
+</html>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(() => {
+    document.getElementById('loading').style.display = 'none';
+  }, 100);
+
+  const cy = cytoscape({
+    container: document.getElementById('cy'),
+    style: [
+      {
+        selector: 'node',
+        style: {
+          'shape': 'roundrectangle',
+          'background-color': '#ff9ec4',
+          'label': 'data(label)',
+          'color': '#4a2c3d',
+          'text-valign': 'center',
+          'text-halign': 'center',
+          'font-size': '12px',
+          'text-wrap': 'wrap',
+          'text-max-width': '100px',
+          'width': 'label',
+          'height': 'label',
+          'padding': '12px',
+          'border-width': 2,
+          'border-color': '#ffb3d6'
+        }
+      },
+      {
+        selector: '#me',
+        style: {
+          'background-color': '#ff69b4',
+          'font-size': '14px',
+          'font-weight': 'bold',
+          'text-max-width': '150px',
+          'color': '#ffffff',
+          'border-color': '#ff1493',
+          'border-width': 3
+        }
+      },
+      {
+        selector: 'edge',
+        style: {
+          'width': 3,
+          'line-color': '#ffb3d6',
+          'target-arrow-color': '#ff9ec4',
+          'target-arrow-shape': 'triangle',
+          'curve-style': 'bezier'
+        }
+      }
+    ],
+    elements: {
+      nodes: [
+        {
+          data: {
+            id: 'me',
+            label: 'Diana Kurohckina\nIt Step College Student'
+          }
+        },
+        { data: { id: 'cpp', label: 'C++' } },
+        { data: { id: 'photoshop', label: 'Photoshop' } },
+        { data: { id: 'canva', label: 'Canva' } },
+        { data: { id: 'illustrator', label: 'Illustrator' } },
+        { data: { id: 'english', label: 'English' } },
+        { data: { id: 'ukrainian', label: 'Ukrainian' } },
+        { data: { id: 'russian', label: 'Russian' } },
+        { data: { id: 'czech', label: 'Czech' } }
+      ],
+      edges: [
+        { data: { source: 'me', target: 'cpp' } },
+        { data: { source: 'me', target: 'photoshop' } },
+        { data: { source: 'me', target: 'canva' } },
+        { data: { source: 'me', target: 'illustrator' } },
+        { data: { source: 'me', target: 'english' } },
+        { data: { source: 'me', target: 'ukrainian' } },
+        { data: { source: 'me', target: 'russian' } },
+        { data: { source: 'me', target: 'czech' } }
+      ]
+    },
+    layout: { 
+      name: 'circle',
+      padding: 50,
+      avoidOverlap: true
+    }
+  });
+});
+</script>
